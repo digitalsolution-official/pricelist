@@ -198,7 +198,7 @@ const APPS = [
           { d: '1 Hari',   p: 6000 },
           { d: '3 Hari',   p: 12000 },
           { d: '1 Minggu', p: 18000 },
-          { d: '1 Bulan',  p: 5000,  f: '1 profil 2 user (1p2u)' },
+          { d: '1 Bulan',  p: 35000,  f: '1 profil 2 user (1p2u)' },
           { d: '1 Bulan',  p: 50000, f: '1 profil 1 user (1p1u)' },
           { d: '1 Bulan',  p: 55000, f: 'Semi private' },
         ] },
