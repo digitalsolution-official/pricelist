@@ -18,7 +18,7 @@
 
   /* ---------- Logo aplikasi ---------- */
   const initials = name => name.replace(/[^A-Za-z0-9+ ]/g, '').split(' ').filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase();
-  const logoSrc = app => app.logo || `assets/logos/${app.id}.svg`;
+  const logoSrc = app => app.logo || (typeof APP_LOGOS !== 'undefined' && APP_LOGOS[app.id]) || `assets/logos/${app.id}.svg`;
   const logoHTML = (app, lg = false) =>
     `<div class="logo${lg ? ' lg' : ''}" data-initials="${esc(initials(app.name))}">
        <img src="${esc(logoSrc(app))}" alt="Logo ${esc(app.name)}" loading="lazy" referrerpolicy="no-referrer">
@@ -31,6 +31,11 @@
     box.textContent = box.dataset.initials;
   };
   document.addEventListener('error', e => { if (e.target.matches?.('.logo img')) toFallback(e.target); }, true);
+
+  // Logo toko (dari logos.js, jadi tidak perlu folder assets)
+  if (typeof STORE_LOGO !== 'undefined') {
+    document.querySelectorAll('.brand-logo, link[rel=icon]').forEach(el => el.tagName === 'LINK' ? (el.href = STORE_LOGO) : (el.src = STORE_LOGO));
+  }
 
   /* ---------- State ---------- */
   const state = { cat: 'all', q: '', sort: 'name' };
